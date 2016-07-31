@@ -12,7 +12,7 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
     /*
     Create table Province
      */
-    private static final String CREATE_PROVINCE = "create table Province (" +
+    private static final String CREATE_PROVINCE = "create table Province(" +
             "_id integer primary key autoincrement, " +
             "province_name text, " +
             "province_code text)";
@@ -20,19 +20,21 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
     /*
     Create table City
      */
-    private static final String CREATE_CITY = "create table City (" +
+    private static final String CREATE_CITY = "create table City(" +
             "_id integer primary key autoincrement, " +
             "city_name text, " +
-            "city_code text," +
-            "foreign key (province_id) references Province(_id))";
+            "city_code text, " +
+            "province_id integer, " +
+            "FOREIGN KEY (province_id) REFERENCES Province(_id))";
 
     /*
     Create table County
      */
-    private static final String CREATE_COUNTY = "create table County (" +
+    private static final String CREATE_COUNTY = "create table County(" +
             "_id integer primary key autoincrement, " +
             "county_name text, " +
-            "county_code text," +
+            "county_code text, " +
+            "city_id integer, " +
             "foreign key (city_id) references City(_id))";
 
     public CoolWeatherOpenHelper(Context context, String name,

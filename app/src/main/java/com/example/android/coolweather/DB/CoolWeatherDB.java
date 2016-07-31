@@ -35,7 +35,7 @@ public class CoolWeatherDB {
         db = coolWeatherOpenHelper.getWritableDatabase();
     }
 
-    private static CoolWeatherDB getInstance(Context context){
+    public static CoolWeatherDB getInstance(Context context){
 
         if(coolWeatherDB == null){
             coolWeatherDB = new CoolWeatherDB(context);
@@ -46,7 +46,7 @@ public class CoolWeatherDB {
     /*
     insert Province instance into Database
      */
-    private void saveProvince(Province province){
+    public void saveProvince(Province province){
 
         ContentValues value = new ContentValues();
         value.put("province_name", province.getProvince_name());
@@ -143,7 +143,7 @@ public class CoolWeatherDB {
 
         List<County> list = new ArrayList<>();
         Cursor cursor = db.query(
-                "City", null, "city_id = ?", new String[]{String.valueOf(city_id)}, null, null, null
+                "County", null, "city_id = ?", new String[]{String.valueOf(city_id)}, null, null, null
         );
 
         if(cursor.moveToFirst()){
